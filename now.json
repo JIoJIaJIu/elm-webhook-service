@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "create-elm-app",
+  "name": "elm-webhook-service",
   "builds": [
     {
       "src": "package.json",

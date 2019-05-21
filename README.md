@@ -1,5 +1,13 @@
-# GetCourseExport
+# Elm webhook service
 
-Serverless snipet for exporting dynamic `GetCourse` data t into `Google Spreadsheets`
+Serverless service for exporting data into `Google Spreadsheets` with webhooks
 
 Used with [zeit.co](https://zeit.co/)
+
+## Usage
+
+### Deployment to Zeit.co
+
+* `npm install -g now-cli`
+* `now login`
+* `now`
