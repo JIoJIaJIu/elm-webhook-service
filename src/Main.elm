@@ -1,28 +1,28 @@
 module Main exposing (..)
 
-import Browser
+import Browser exposing (Document)
+import Browser.Navigation as Nav
+import List
 import Html exposing (Html, text, div, h1, img)
 import Html.Attributes exposing (src)
+import Url exposing (Url)
 
-
----- MODEL ----
+import Api
+import Models.Viewer as Viewer
 
 
 type alias Model =
     {}
 
-
-init : ( Model, Cmd Msg )
-init =
+init : Maybe viewer -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init maybeViewer url navKey =
     ( {}, Cmd.none )
-
-
-
----- UPDATE ----
 
 
 type Msg
     = NoOp
+    | ChangedUrl Url
+    | UrlRequest Browser.UrlRequest
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -30,27 +30,24 @@ update msg model =
     ( model, Cmd.none )
 
 
-
----- VIEW ----
-
-
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
-    div []
-        [ img [ src "/logo.svg" ] []
-        , h1 [] [ text "Your Elm App is working!" ]
-        ]
+    { title = "Elm webhook app"
+    , body = [
+        div []
+            [ img [ src "/logo.svg" ] []
+              , h1 [] [ text "Your Elm App is working!" ]
+            ]
+      ]
+    }
 
 
-
----- PROGRAM ----
-
-
-main : Program () Model Msg
 main =
-    Browser.element
-        { view = view
-        , init = \_ -> init
-        , update = update
-        , subscriptions = always Sub.none
-        }
+    Api.application Viewer.decoder
+      { init = init
+      , onUrlChange = ChangedUrl
+      , onUrlRequest = UrlRequest
+      , subscriptions = \_ -> Sub.none
+      , update = update
+      , view = view
+      }

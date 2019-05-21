@@ -1,5 +1,5 @@
 {
-  "name": "elm-example-app",
+  "name": "elm-webhook-service",
   "version": "1.0.0",
   "description": "Elm example app",
   "scripts": {
@@ -9,7 +9,7 @@
     "now-build": "NODE_ENV=production elm-app build",
     "test": "elm-format --validate . && elm-test"
   },
-  "author": "Author",
+  "author": "Guro Bokum <jiojiajiu@gmail.com>",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
