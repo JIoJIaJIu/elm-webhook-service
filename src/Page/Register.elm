@@ -11,11 +11,8 @@ import Json.Decode.Pipeline exposing (optional)
 import Json.Encode as Encode
 import Route exposing (Route)
 import Session exposing (Session)
-import Viewer exposing (Viewer)
 
-
-
--- MODEL
+import Models.Viewer as Viewer exposing (Viewer)
 
 
 type alias Model =
@@ -49,10 +46,6 @@ init session =
       }
     , Cmd.none
     )
-
-
-
--- VIEW
 
 
 view : Model -> { title : String, content : Html Msg }
@@ -126,10 +119,6 @@ viewProblem problem =
                     str
     in
     li [] [ text errorMessage ]
-
-
-
--- UPDATE
 
 
 type Msg
